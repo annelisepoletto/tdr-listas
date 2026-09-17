@@ -1,0 +1,7 @@
+_targets/
+saidas/
+*.html
+.Rhistory
+.RData
+.Rproj.user/
+R/grafico.png
