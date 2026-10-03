@@ -1,0 +1,41 @@
+---
+title: "Análise dos dados de qualidade do ar"
+author: "Annelise Poletto"
+lang: pt-BR
+format:
+  html:
+    embed-resources: true
+---
+
+```{r}
+#| echo: false
+
+library(targets)
+
+tar_load(dados)
+tar_load(medias)
+tar_load(modelo)
+tar_load(figura)
+```
+
+O conjunto de dados analisado contém `r nrow(dados)` observações. O ajuste foi realizado com `r nobs(modelo)` observações e apresentou inclinação de `r round(coef(modelo)[["Solar.R"]], 3)`.
+
+As médias mensais das duas variáveis escolhidas são apresentadas na @tbl-medias.
+
+```{r}
+#| label: tbl-medias
+#| tbl-cap: "Médias mensais de Ozônio e radiação solar"
+
+knitr::kable(medias, digits = 2)
+```
+
+A relação entre radiação solar e concentração de ozônio, juntamente com a reta ajustada, é apresentada na @fig-dispersao.
+
+```{r}
+#| label: fig-dispersao
+#| fig-cap: "Dispersão de Ozônio em função da radiação solar, com reta ajustada"
+
+knitr::include_graphics(figura)
+```
+
+A análise mostra que as médias mensais de ozônio e radiação solar variam ao longo dos meses analisados. No ajuste linear, a inclinação positiva indica uma associação positiva entre radiação solar e concentração de ozônio.
